@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { InjectCustomScriptService } from '../../services/custom-script/inject-custom-script.service'
 
 @Component({
@@ -6,7 +6,7 @@ import { InjectCustomScriptService } from '../../services/custom-script/inject-c
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit, AfterViewInit {
+export class MainPageComponent implements OnInit {
   
 
   script = '<script>console.log(\'script da pagina principal executando\');</script>';
@@ -17,11 +17,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log("Você entrou na pagina principal");
-    this.injectCustomScriptService.setScriptToHeader(this.script)
-  }
-
-  ngAfterViewInit(): void {
-    
+    this.injectCustomScriptService.setScriptToHeader(this.script, true)
   }
 
 }

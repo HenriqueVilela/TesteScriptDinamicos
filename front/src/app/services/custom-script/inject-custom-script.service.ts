@@ -10,9 +10,11 @@ export class InjectCustomScriptService {
   constructor(
   ) { }
 
-  public setScriptToBody(data: string): void {
-    console.log(document.getElementsByClassName("script_personalizado_body").length);
-    if (document.getElementsByClassName("script_personalizado").length === 0) {
+  public setScriptToBody(data: string, $replaceSript: boolean = false): void {
+    if ($replaceSript) {
+      this.removeOldScript("body");
+    }
+    if (document.getElementsByClassName("script_personalizado_body").length === 0) {
       $(data).toArray().forEach(element => {
         if (element.tagName === "SCRIPT" || element.tagName === "NOSCRIPT") {
           element.classList.add("script_personalizado_body");
@@ -22,7 +24,10 @@ export class InjectCustomScriptService {
     }
   }
 
-  public setScriptToHeader(data: string): void {
+  public setScriptToHeader(data: string, $replaceSript: boolean = false): void {
+    if ($replaceSript) {
+      this.removeOldScript("header");
+    }
     if (document.getElementsByClassName("script_personalizado_header").length === 0) {
       $(data).toArray().forEach(element => {
         if (element.tagName === "SCRIPT" || element.tagName === "NOSCRIPT") {
@@ -31,6 +36,13 @@ export class InjectCustomScriptService {
         }
       });
     }
+  }
+
+  private removeOldScript($location: string) {
+    const elements = document.getElementsByClassName("script_personalizado_" + $location);
+    while(elements.length > 0) {
+      elements[0].remove();
+   }
   }
 
 }
