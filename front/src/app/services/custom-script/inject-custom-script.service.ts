@@ -11,11 +11,11 @@ export class InjectCustomScriptService {
   ) { }
 
   public setScriptToBody(data: string): void {
-    console.log(document.getElementsByClassName("script_personalizado").length);
+    console.log(document.getElementsByClassName("script_personalizado_body").length);
     if (document.getElementsByClassName("script_personalizado").length === 0) {
       $(data).toArray().forEach(element => {
         if (element.tagName === "SCRIPT" || element.tagName === "NOSCRIPT") {
-          element.classList.add("script_personalizado");
+          element.classList.add("script_personalizado_body");
           $("body").append(element);
         }
       });
@@ -23,10 +23,10 @@ export class InjectCustomScriptService {
   }
 
   public setScriptToHeader(data: string): void {
-    if (document.getElementsByClassName("script_personalizado").length === 0) {
+    if (document.getElementsByClassName("script_personalizado_header").length === 0) {
       $(data).toArray().forEach(element => {
         if (element.tagName === "SCRIPT" || element.tagName === "NOSCRIPT") {
-          element.classList.add("script_personalizado");
+          element.classList.add("script_personalizado_header");
           $("head").append(element);
         }
       });

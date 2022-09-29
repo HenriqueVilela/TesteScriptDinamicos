@@ -9,15 +9,14 @@ import { InjectCustomScriptService } from '../../services/custom-script/inject-c
 export class MainPageComponent implements OnInit, AfterViewInit {
   
 
-  script = '<script>console.log(\'script da pagina secundaria executando\');</script>';
+  script = '<script>console.log(\'script da pagina principal executando\');</script>';
 
   constructor(
     public injectCustomScriptService: InjectCustomScriptService
   ) {}
 
   ngOnInit(): void {
-    console.log("Você entrou na pagina secundaria");
-    console.log('garai',this.script);
+    console.log("Você entrou na pagina principal");
     this.injectCustomScriptService.setScriptToHeader(this.script)
   }
 
